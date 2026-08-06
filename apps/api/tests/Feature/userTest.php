@@ -1,7 +1,7 @@
 <?php
 
 test('user created', function () {
-    $this->assertDatabaseMissing('users');
+    $this->assertDatabaseMissing('users', 0);
 
     //chamada principal
 
