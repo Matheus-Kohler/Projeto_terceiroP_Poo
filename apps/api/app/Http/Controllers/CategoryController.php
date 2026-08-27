@@ -23,7 +23,7 @@ class CategoryController extends Controller
     {
         $category = new Category();
         $category->name = $request->name;
-        $category->description = $request->descripton;
+        $category->description = $request->description;
 
         $category->save();
 
@@ -33,34 +33,16 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Category $category)
     {
-        $category = Category::find($id);
-
-        if (!$category){
-            // 404 Not Found
-            return response()->json( [
-                'message' => 'Categoria não encontrada',
-            ], 404);
-        }
-
         return $category;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        $category = Category::find($id);
-
-        if (!$category){
-            // 404 Not Found
-            return response()->json( [
-                'message' => 'Categoria não encontrada',
-            ], 404);
-        }
-
         $category->name = $request->name ?? $category->name;
         $category->description = $request->description ?? $category->description;
 
@@ -72,17 +54,8 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        $category = Category::find($id);
-
-        if (!$category){
-            // 404 Not Found
-            return response()->json( [
-                'message' => 'Categoria não encontrada',
-            ], 404);
-        }
-
         $hasProduct = Product::where('category_id', $category->id)->exists();
 
         if ($hasProduct) {
