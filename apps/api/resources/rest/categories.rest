@@ -9,8 +9,8 @@ POST {{baseUri}}/categories HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Categoria Nova10",
-    "description": "Categoria criada via API/REST10"
+    "name": "Categoria Nova11",
+    "description": "Categoria criada usando CategoryStoreRequest via API/REST11"
 }
 
 
@@ -24,11 +24,12 @@ Content-Type: application/json
 ### Update
 # 123 é o ID da categoria neste exemplo.
 #Utilize um ID existente em sua base de dados.
-PUT {{baseUri}}/categories/9 HTTP/1.1
+PUT {{baseUri}}/categories/2 HTTP/1.1
 Content-Type: application/json
 
 {
-    "description": "Categoria ATUALIZADA via API/REST9"
+    "name": "Categoria ATUALIZADA via CategoryUpdateRequest API/REST11",
+    "description": "Categoria ATUALIZADA via CategoryUpdateRequest API/REST11"
 }
 
 ### Delete
