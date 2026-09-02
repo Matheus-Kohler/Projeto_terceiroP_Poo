@@ -28,7 +28,7 @@ PUT {{baseUri}}/categories/2 HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Categoria ATUALIZADA via CategoryUpdateRequest API/REST11",
+
     "description": "Categoria ATUALIZADA via CategoryUpdateRequest API/REST11"
 }
 

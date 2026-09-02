@@ -23,7 +23,7 @@ class CategoryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=> "string|required",
+            "name"=> "string|nullable",
             "description"=> "string|nullable",
         ];
     }

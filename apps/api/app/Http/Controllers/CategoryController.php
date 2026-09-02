@@ -45,7 +45,7 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
 
-        $category = Category::create($data);
+        $category->update($data);
 
         return $category;
     }
