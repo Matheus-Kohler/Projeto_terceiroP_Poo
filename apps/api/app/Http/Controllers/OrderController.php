@@ -2,63 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\models\Order;
 use App\Http\Requests\OrderStoreRequest;
 use App\Http\Requests\OrderUpdateRequest;
+use App\Models\Order;
+use Illuminate\Http\Response;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return Order::paginate();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(OrderStoreRequest $request)
     {
-        $data = $request->validated();
-
-        $order = Order::create($data);
-
-        return $order;
+        return Order::create(
+            $request->validated(),
+        );
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Order $order)
     {
         return $order;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(OrderUpdateRequest $request, Order $order)
     {
-        $data = $request->validated();
-
-        $order->update($data);
+        $order->update($request->validated());
 
         return $order;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Order $order)
     {
         $order->delete();
 
-        // 204 No Content
-        return response()->json([
-            'message' => 'Pedido excluido',
-        ], 204);
+        return response()->json([], Response::HTTP_NO_CONTENT);
     }
 }

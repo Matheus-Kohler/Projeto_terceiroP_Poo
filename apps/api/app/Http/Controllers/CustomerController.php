@@ -4,61 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerStoreRequest;
 use App\Http\Requests\CustomerUpdateRequest;
-use App\models\Customers;
-use Illuminate\Http\Request;
+use App\Models\Customer;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return Customers::paginate();
+        return Customer::paginate();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(CustomerStoreRequest $request)
     {
-        $data = $request->validated();
-
-        $customer = Customers::create($data);
-
-        return $customer;
+        return Customer::create(
+            $request->validated()
+        );
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Customers $customer)
+    public function show(Customer $customer)
     {
         return $customer;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(CustomerUpdateRequest $request, Customers $customer)
-    {
-        $data = $request->validated();
-
-        $customer->update($data);
+    public function update(
+        CustomerUpdateRequest $request,
+        Customer $customer
+    ) {
+        $customer->update(
+            $request->validated(),
+        );
 
         return $customer;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Customers $customer)
+    public function destroy(Customer $customer)
     {
         $customer->delete();
 
-        // 204 No Content
-        return response()->json([
-            'message' => 'cliente excluido',
-        ], 204);
+        return response()->json([], 204);
     }
 }

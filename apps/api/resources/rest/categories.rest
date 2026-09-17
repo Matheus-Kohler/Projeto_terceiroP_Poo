@@ -1,39 +1,41 @@
+
 @baseUri = http://localhost:8182/api
 
 ### Index
 GET {{baseUri}}/categories HTTP/1.1
-Content-Type: application/json
+content-type: application/json
 
 ### Store
 POST {{baseUri}}/categories HTTP/1.1
-Content-Type: application/json
+content-type: application/json
 
 {
-    "name": "Categoria Nova11",
-    "description": "Categoria criada usando CategoryStoreRequest via API/REST11"
+    "name": "Categoria Nova",
+    "description": "Categoria criada via API/REST"
 }
 
-
 ### Show
-# 123 é o ID da categoria neste exemplo.
-#Utilize um ID existente em sua base de dados.
-GET {{baseUri}}/categories/9 HTTP/1.1
-Content-Type: application/json
-
+# 126 é o ID da categoria neste exemplo.
+# Utilize um ID existente em sua base de dados.
+GET {{baseUri}}/categories/140 HTTP/1.1
+content-type: application/json
 
 ### Update
-# 123 é o ID da categoria neste exemplo.
-#Utilize um ID existente em sua base de dados.
-PUT {{baseUri}}/categories/2 HTTP/1.1
-Content-Type: application/json
+# 126 é o ID da categoria neste exemplo.
+# Utilize um ID existente em sua base de dados.
+PUT {{baseUri}}/categories/140 HTTP/1.1
+content-type: application/json
 
 {
-
-    "description": "Categoria ATUALIZADA via CategoryUpdateRequest API/REST11"
+    "name": "Category name updated...",
+    "description": "Categoria up2 ATUALIZADA via API/REST"
 }
 
 ### Delete
-# 123 é o ID da categoria neste exemplo.
-#Utilize um ID existente em sua base de dados.
-DELETE {{baseUri}}/categories/10 HTTP/1.1
-Content-Type: application/json
+# 126 é o ID da categoria neste exemplo.
+# Utilize um ID existente em sua base de dados.
+#
+# Após a execução deste processo, o mesmo ID não funcionará
+# em outras operações, pois o registro foi removido.
+DELETE  {{baseUri}}/categories/132 HTTP/1.1
+content-type: application/json

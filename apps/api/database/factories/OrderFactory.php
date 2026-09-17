@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Customer;
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,10 +18,15 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        $status = fake()->randomElement(['pending', 'cancelled', 'paid']);
+
         return [
-            "total" => fake()->numberBetween(1, 20),
-            'Status' => fake()->sentence(),
-            'paid_at' => fake()->dateTime(),
+            'customer_id' => Customer::factory(),
+            'total' => fake()->randomDigitNotZero(),
+            'status' => $status,
+            'paid_at' => $status === 'paid' ? fake()->dateTimeBetween(
+                startDate: '-5 days',
+            ) : null,
         ];
     }
 }
