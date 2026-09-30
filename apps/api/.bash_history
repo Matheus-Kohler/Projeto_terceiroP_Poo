@@ -3,3 +3,9 @@ clear
 clear
 exit
 exit
+php artisan migrate
+cls
+clear
+php artisan db:seed UserSeeder
+php artisan vendor:publish --provider="Dedoc\Scramble\ScrambleServiceProvider" --tag="scramble-config"
+exit
