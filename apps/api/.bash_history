@@ -14,3 +14,7 @@ provider="Dedoc\Scramble\ScrambleServiceProvider" --tag="scramble-config"
 provider="Dedoc\Scramble\ScrambleServiceProvider" --tag="scramble-config"
 php artisan vendor:publish --provider="Dedoc\Scramble\ScrambleServiceProvider" --tag="scramble-config"
 exit
+php artisan config:clear
+php artisan package:discover
+php artisan vendor:publish --provider="Dedoc\Scramble\ScrambleServiceProvider"
+exit
