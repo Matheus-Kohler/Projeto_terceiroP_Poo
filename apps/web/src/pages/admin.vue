@@ -1,36 +1,48 @@
 <template>
-  <q-item clickable :to="props.link">
-    <q-item-section v-if="props.icon" avatar>
-      <q-icon :name="props.icon" />
-    </q-item-section>
+  <q-layout view="lHh Lpr lFf">
+    <q-header elevated>
+      <q-toolbar>
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+        <q-toolbar-title> Quasar App </q-toolbar-title>
+        <div>Quasar v{{ $q.version }}</div>
+      </q-toolbar>
+    </q-header>
 
-    <q-item-section>
-      <q-item-label>{{ props.label }}</q-item-label>
-      <q-item-label caption>{{ props.caption }}</q-item-label>
-    </q-item-section>
-  </q-item>
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+      <q-list>
+        <q-item-label header> MENU </q-item-label>
+        <EssentialLink v-for="link in linksList" :key="link.label" v-bind="link" />
+      </q-list>
+    </q-drawer>
+
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+  </q-layout>
 </template>
 
 <script setup>
-const props = defineProps({
-  label: {
-    type: String,
-    required: true,
-  },
+import { ref } from 'vue'
+import EssentialLink from '@/components/EssentialLink.vue'
 
-  caption: {
-    type: String,
-    default: '',
+const linksList = [
+  {
+    label: 'Categorias',
+    caption: 'categorias',
+    icon: 'category',
+    link: '/admin/categories',
   },
+  {
+    label: 'Produtos',
+    caption: 'produtos',
+    icon: 'category',
+    link: '/admin/products',
+  },
+]
 
-  link: {
-    type: String,
-    default: '#',
-  },
+const leftDrawerOpen = ref(false)
 
-  icon: {
-    type: String,
-    default: '',
-  },
-})
+function toggleLeftDrawer() {
+  leftDrawerOpen.value = !leftDrawerOpen.value
+}
 </script>
