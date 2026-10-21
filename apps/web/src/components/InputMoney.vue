@@ -1,64 +1,72 @@
 <template>
-  <q-form class="q-gutter-y-md">
-    <q-toggle
-      v-model="product.enabled"
-      :label="`Produto ${product.enabled ? 'ativo' : 'inativo'}`"
-    />
-    <q-input
-      outlined
-      stack-label
-      required
-      label="Nome"
-      v-model="product.name"
-    />
-    <q-input
-      outlined
-      stack-label
-      required
-      autogrow
-      label="Descrição"
-      v-model="product.description"
-    />
-    <input-money
-      outlined
-      stack-label
-      required
-      label="Preço"
-      v-model="product.price"
-    />
-    <q-input
-      outlined
-      stack-label
-      required
-      label="Estoque"
-      v-model="product.stock"
-    />
-    <div class="full-width bg-grey-1 q-py-md">
-      <q-btn-group spread flat>
-        <q-btn
-          flat
-          no-caps
-          :loading="product.saving"
-          type="submit"
-          label="Salvar"
-          icon="save"
-          color="positive"
-        />
-      </q-btn-group>
-    </div>
-  </q-form>
+  <q-field>
+    <template v-slot:control="{ id, floatingLabel, modelValue, emitValue }">
+        <money3
+            :id="id"
+            class="q-field__input text-left"
+            :model-value="modelValue"
+            @update:model-value="(v) => extendEmitFn(emitValue, v)"
+            v-blind="config"
+            v-show="floatingLabel"
+            />
+    </template>
+  </q-field>
 </template>
 
-<script setup>
-import InputMoney from './InputMoney.vue';
+<script>
+import { defineComponent } from 'vue'
+import { money3Component as Money3 } from 'v-money3'
+import { debounce } from 'quasar';
 
-const product = defineModel({
-  id: null,
-  enabled: true,
-  name: null,
-  description: null,
-  price: 0,
-  stock: 0,
-  saving: false,
+export default defineComponent({
+    name: 'InputMoney',
+    components: {
+        Money3
+    },
+    props: {
+        debounce: {
+            type: [Number, String],
+            default: 0,
+        },
+        prefix: {
+            type: String,
+            default: 'R$ ',
+        },
+        suffix: {
+            type: String,
+            default: '',
+        },
+        precision: {
+            type: Number,
+            default: 2
+        },
+        max: {
+            type: Number,
+            default: 2
+        }
+
+    },
+    setup (props, { emit }) {
+        const config = {
+            decimal: ',',
+            thousands: '.',
+            prefix: props.prefix,
+            suffix: props.suffix,
+            precision: props.precision,
+            masked: false,
+            focusOnRight: true,
+            max: props.max,
+        }
+
+        const extendEmitFn = debounce((emitValueFn, value) => {
+            emitValueFn(value);
+            emit('change', value);
+        }, parseInt(props.debounce))
+
+        return {
+            config,
+            extendEmitFn,
+        }
+    }
 })
 </script>
