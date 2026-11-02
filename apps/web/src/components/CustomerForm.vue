@@ -48,8 +48,8 @@ const customer = defineModel({
   id: null,
   name: null,
   email: null,
-  phone: 0,
-  birth_date: 0,
+  phone: null,
+  birth_date: null,
   saving: false,
 })
 </script>

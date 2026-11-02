@@ -42,7 +42,7 @@ export default defineComponent({
         },
         max: {
             type: Number,
-            default: 2
+            default: null
         }
 
     },

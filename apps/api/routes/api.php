@@ -20,6 +20,7 @@ Route::group([
     Route::apiResource('customers', CustomerController::class);
     Route::apiResource('reviews', ReviewController::class);
     Route::apiResource('orders', OrderController::class);
+    Route::apiResource('products', ProductController::class);
 }
 );
 
