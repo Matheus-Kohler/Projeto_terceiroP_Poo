@@ -10,19 +10,23 @@
     <q-input
       outlined
       stack-label
-      autogrow
+      required
+      type="email"
       label="Email"
       v-model="customer.email"
     />
     <q-input
       outlined
       stack-label
+      required
       label="Telefone"
       v-model="customer.phone"
     />
     <q-input
       outlined
       stack-label
+      required
+      type="date"
       label="Data de Nascimento"
       v-model="customer.birth_date"
     />
@@ -43,7 +47,6 @@
 </template>
 
 <script setup>
-
 const customer = defineModel({
   id: null,
   name: null,
