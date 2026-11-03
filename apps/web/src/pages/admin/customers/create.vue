@@ -42,6 +42,13 @@ const saveCustomer = () => {
   createCustomer(customer.value).then((data) => {
     Notify.create('Cliente cadastrado!')
     router.push(`/admin/customers/${data.id}`)
+  }).catch((e) => {
+    console.error(e)
+    Notify.create({
+      type: 'negative',
+      message: 'Falha ao salvar cliente',
+      caption: e?.response?.data?.message ?? 'Verifique os campos preenchidos',
+    })
   }).finally(() => {
     customer.value.saving = false
   })

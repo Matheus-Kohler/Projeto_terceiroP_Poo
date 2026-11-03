@@ -47,12 +47,5 @@
 </template>
 
 <script setup>
-const customer = defineModel({
-  id: null,
-  name: null,
-  email: null,
-  phone: null,
-  birth_date: null,
-  saving: false,
-})
+const customer = defineModel()
 </script>

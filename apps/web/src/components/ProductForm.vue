@@ -52,13 +52,5 @@
 <script setup>
 import InputMoney from './InputMoney.vue';
 
-const product = defineModel({
-  id: null,
-  enabled: true,
-  name: null,
-  description: null,
-  price: 0,
-  stock: 0,
-  saving: false,
-})
+const product = defineModel()
 </script>

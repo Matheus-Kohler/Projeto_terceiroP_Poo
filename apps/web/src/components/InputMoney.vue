@@ -6,7 +6,7 @@
             class="q-field__input text-left"
             :model-value="modelValue"
             @update:model-value="(v) => extendEmitFn(emitValue, v)"
-            v-blind="config"
+            v-bind="config"
             v-show="floatingLabel"
             />
     </template>

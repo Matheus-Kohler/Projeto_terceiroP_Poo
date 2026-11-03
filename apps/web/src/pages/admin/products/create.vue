@@ -43,6 +43,13 @@ const saveProduct = () => {
   createProduct(product.value).then((data) => {
     Notify.create('Produto cadastrado!')
     router.push(`/admin/products/${data.id}`)
+  }).catch((e) => {
+    console.error(e)
+    Notify.create({
+      type: 'negative',
+      message: 'Falha ao salvar produto',
+      caption: e?.response?.data?.message ?? 'Verifique os campos preenchidos',
+    })
   }).finally(() => {
     product.value.saving = false
   })
