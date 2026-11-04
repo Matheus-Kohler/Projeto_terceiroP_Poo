@@ -1,5 +1,5 @@
 <template>
-  <q-form class="q-gutter-y-md">
+  <q-form class="q-gutter-y-md" @submit.prevent="emit('submit')">
     <q-toggle
       v-model="product.enabled"
       :label="`Produto ${product.enabled ? 'ativo' : 'inativo'}`"
@@ -53,4 +53,5 @@
 import InputMoney from './InputMoney.vue';
 
 const product = defineModel()
+const emit = defineEmits(['submit'])
 </script>

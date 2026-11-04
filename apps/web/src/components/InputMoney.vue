@@ -15,7 +15,7 @@
 
 <script>
 import { defineComponent } from 'vue'
-import { money3Component as Money3 } from 'v-money3'
+import { Money3Component as Money3 } from 'v-money3'
 import { debounce } from 'quasar';
 
 export default defineComponent({
