@@ -4,9 +4,10 @@
         bordered
         auto-upload
         no-thumbnails
-        v-blind="formConfig"
+        v-bind="formConfig"
         @uploaded="onUpload"
         class="full-width"
+        ref="uploader"
     />
 </template>
 
@@ -15,7 +16,7 @@ import { LocalStorage } from 'quasar';
 import { computed, ref } from 'vue';
 
 const uploader = ref(null)
-const emit = defineEmits('upload')
+const emit = defineEmits(['upload'])
 
 const formConfig = computed(() => {
     const auth = LocalStorage.getItem('auth_data')

@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 // Registrar rota de login
@@ -22,6 +23,7 @@ Route::group([
     Route::apiResource('reviews', ReviewController::class);
     Route::apiResource('orders', OrderController::class);
     Route::apiResource('products', ProductController::class);
+    Route::post('upload', UploadController::class);
 }
 );
 

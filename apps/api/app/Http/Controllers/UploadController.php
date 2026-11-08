@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UploadRequest;
 use Illuminate\Support\Facades\Storage;
 
-class uploadController extends Controller
+class UploadController extends Controller
 {
     public function __invoke(UploadRequest $request){
         $path = $request->file->store('files');
