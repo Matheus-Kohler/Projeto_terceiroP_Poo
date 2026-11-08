@@ -5,7 +5,7 @@
         auto-upload
         no-thumbnails
         v-blind="formConfig"
-        @uploaded="uploader"
+        @uploaded="onUpload"
         class="full-width"
     />
 </template>
